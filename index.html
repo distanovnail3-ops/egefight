@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>WASD Range</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main id="game-shell" aria-label="WASD Range">
+      <canvas id="game"></canvas>
+      <audio id="soundtrack" src="./assets/soundtrack.mp3" preload="auto" loop></audio>
+
+      <div class="hud hud-top">
+        <div class="stat">
+          <span>Убито</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="stat">
+          <span>Волна</span>
+          <strong id="wave">1</strong>
+        </div>
+        <div class="stat">
+          <span>Зомби</span>
+          <strong id="targets-left">0</strong>
+        </div>
+        <div class="stat">
+          <span>Рекорд</span>
+          <strong id="best-kills">0</strong>
+        </div>
+        <div class="stat">
+          <span>Деньги</span>
+          <strong id="money">0</strong>
+        </div>
+      </div>
+
+      <div id="soundtrack-label" class="soundtrack-label">godlikelove - Die Wut</div>
+
+      <div class="top-actions">
+        <button id="pause-button" class="icon-button" type="button" aria-label="Пауза">⏸</button>
+        <button id="camera-mode-button" class="camera-toggle" type="button">3-е лицо</button>
+      </div>
+
+      <div class="health-panel" aria-label="Здоровье">
+        <span>Здоровье</span>
+        <div class="health-bar">
+          <i id="health-fill"></i>
+        </div>
+        <strong id="health-value">100</strong>
+      </div>
+
+      <div class="weapon-panel" aria-label="Оружие">
+        <span>Оружие</span>
+        <strong id="weapon-name">Пистолет</strong>
+      </div>
+
+      <section id="shop-panel" class="shop-panel" aria-label="Магазин оружия">
+        <div class="shop-title">Магазин</div>
+        <button type="button" data-weapon="pistol">1 Пистолет</button>
+        <button type="button" data-weapon="bow">2 Лук $140</button>
+        <button type="button" data-weapon="sword">3 Меч $240</button>
+        <button type="button" data-weapon="shotgun">4 Дробовик $320</button>
+        <button type="button" data-weapon="rifle">5 Автомат $360</button>
+        <button type="button" data-weapon="crossbow">6 Арбалет $520</button>
+        <button type="button" data-weapon="sniper">7 Снайперка $680</button>
+        <button type="button" data-weapon="machinegun">8 Пулемет $760</button>
+        <button type="button" data-weapon="railgun">9 Рельса $1250</button>
+        <button type="button" data-weapon="minigun">0 Миниган $1500</button>
+      </section>
+
+      <div class="crosshair" aria-hidden="true">
+        <i></i>
+        <i></i>
+      </div>
+
+      <div id="hit-marker" class="hit-marker" aria-hidden="true"></div>
+      <div id="damage-flash" class="damage-flash" aria-hidden="true"></div>
+
+      <div id="mobile-controls" class="mobile-controls">
+        <div id="mobile-look-zone" class="mobile-look-zone"></div>
+        <div id="move-stick" class="move-stick">
+          <i id="move-knob"></i>
+        </div>
+        <button id="mobile-sprint" class="mobile-sprint" type="button" aria-label="Бег">⇧</button>
+        <button id="mobile-fire" class="mobile-fire" type="button" aria-label="Огонь"></button>
+      </div>
+
+      <section id="start-panel" class="start-panel">
+        <div class="start-copy">
+          <p class="eyebrow">3D стрелялка</p>
+          <h1>WASD Range</h1>
+          <p>Выбери ЕГЭ, закупай оружие и переживи как можно больше волн.</p>
+        </div>
+        <div id="exam-select" class="exam-select" aria-label="Выбор врагов ЕГЭ">
+          <button class="active" type="button" data-zombie-type="math">
+            <img src="./download.png" alt="" />
+            <span>Математика</span>
+          </button>
+          <button type="button" data-zombie-type="physics">
+            <img src="./assets/ege-physics.png" alt="" />
+            <span>Физика</span>
+          </button>
+          <button type="button" data-zombie-type="russian">
+            <img src="./assets/ege-russian.png" alt="" />
+            <span>Русский</span>
+          </button>
+          <button type="button" data-zombie-type="social">
+            <img src="./assets/ege-social.png" alt="" />
+            <span>Общество</span>
+          </button>
+          <button type="button" data-zombie-type="chemistry">
+            <img src="./assets/ege-chemistry.png" alt="" />
+            <span>Химия</span>
+          </button>
+          <button type="button" data-zombie-type="biology">
+            <img src="./assets/ege-biology.png" alt="" />
+            <span>Биология</span>
+          </button>
+          <button type="button" data-zombie-type="english">
+            <img src="./assets/ege-english.png" alt="" />
+            <span>Английский</span>
+          </button>
+        </div>
+        <button id="play-button" type="button">Начать</button>
+        <p class="made-by">made by OBANAIL</p>
+      </section>
+
+      <section id="pause-panel" class="pause-panel hidden">
+        <div class="pause-copy">
+          <p class="eyebrow">Пауза</p>
+          <h2>Игра остановлена</h2>
+          <p>P или кнопка сверху продолжат бой.</p>
+        </div>
+        <button id="resume-button" type="button">Продолжить</button>
+      </section>
+    </main>
+
+    <script type="module" src="./src/game.js"></script>
+  </body>
+</html>
